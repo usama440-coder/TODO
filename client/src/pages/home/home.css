@@ -1,0 +1,48 @@
+.homeContainer {
+    z-index: 3;
+    width: 100%;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  
+  /* header */
+  .homeHeader {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    background-color: #ebc8aa7f;
+    border-radius: 0.2rem;
+    backdrop-filter: blur(5px);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  }
+  
+  .homeHeader p {
+    color: #ffffff;
+  }
+  
+  .icon {
+    color: #807149;
+    cursor: pointer;
+  }
+  
+  
+  /* todo list */
+  .todoList {
+    width: 300px;
+  }
+  
+  .todoList .todoListItem:nth-child(1) {
+    border-radius: 0.2rem 0.2rem 0 0;
+  }
+  
+  .todoList .todoListItem:nth-last-child(1) {
+    border-radius: 0 0 0.2rem 0.2rem;
+  } 
+  
+  
