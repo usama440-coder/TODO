@@ -7,6 +7,7 @@ import AddTodoModal from "../../components/AddTodoModal/AddTodoModal";
 
 const Home = () => {
   const [tasks, setTasks] = useState([]);
+  const [addTaskModal, setAddTaskModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,16 +27,20 @@ const Home = () => {
       <img src="/img/user.avif" alt="avatar" width="60" />
 
       <div className="homeHeader">
-        <FaBars className="icon" />
+        <FaBars className="icon" onClick={() => setAddTaskModal(true)} />
         <p>Your todos</p>
         <FaAngleDown className="icon" />
       </div>
 
-      <AddTodoModal />
+      {addTaskModal ? (
+        <AddTodoModal tasks={tasks} setAddTaskModal={setAddTaskModal} />
+      ) : (
+        ""
+      )}
 
       <div className="todoList">
         {tasks?.map((task) => {
-          return <Todo key={task?._id} todo={task} />;
+          return <Todo key={task?._id} todo={task} setTasks={setTasks} />;
         })}
       </div>
     </div>

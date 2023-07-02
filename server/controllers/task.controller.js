@@ -15,7 +15,7 @@ const addTask = asyncHandler(async (req, res) => {
   // description length
   if (description.length < 5) {
     res.status(400);
-    throw new Error("Lenght should be atleast 5 characters");
+    throw new Error("Length should be atleast 5 characters");
   }
 
   const task = await Task.create({
@@ -64,13 +64,7 @@ const updateTask = asyncHandler(async (req, res) => {
   // description length
   if (description && description.length < 5) {
     res.status(400);
-    throw new Error("Lenght should be atleast 5 characters");
-  }
-
-  // completed Time to be inserted if completed is true
-  if (completedTime && completed === false) {
-    res.status(400);
-    throw new Error("Completed should be set to true");
+    throw new Error("Length should be atleast 5 characters");
   }
 
   await Task.updateOne({ _id }, { description, completed, completedTime });
