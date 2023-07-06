@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 const Todo = ({ todo, setTasks }) => {
   const [checked, setChecked] = useState(todo?.completed);
 
+  // function to handle delete operation
   const handleDelete = async () => {
     try {
       await taskService.deleteTask(todo?._id);
@@ -17,6 +18,7 @@ const Todo = ({ todo, setTasks }) => {
     }
   };
 
+  // handle update call to server
   const handleChange = async (e) => {
     try {
       setChecked(e.target.checked);

@@ -10,6 +10,7 @@ const Home = () => {
   const [addTaskModal, setAddTaskModal] = useState(false);
 
   useEffect(() => {
+    // fetch data from server
     const fetchData = async () => {
       try {
         const res = await taskService.getTasks();
@@ -18,7 +19,6 @@ const Home = () => {
         console.log(error);
       }
     };
-
     fetchData();
   }, []);
 
@@ -26,18 +26,21 @@ const Home = () => {
     <div className="homeContainer">
       <img src="/img/user.avif" alt="avatar" width="60" />
 
+      {/* header */}
       <div className="homeHeader">
         <FaBars className="icon" onClick={() => setAddTaskModal(true)} />
         <p>Your todos</p>
         <FaAngleDown className="icon" />
       </div>
 
+      {/* add todo modal */}
       {addTaskModal ? (
         <AddTodoModal tasks={tasks} setAddTaskModal={setAddTaskModal} />
       ) : (
         ""
       )}
 
+      {/* todo list */}
       <div className="todoList">
         {tasks?.map((task) => {
           return <Todo key={task?._id} todo={task} setTasks={setTasks} />;

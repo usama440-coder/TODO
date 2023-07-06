@@ -5,7 +5,7 @@ const errorHandler = (err, req, res, next) => {
   //   mongoose cast object error
   if (err.name === "CastError") {
     message = "Resource not found";
-    statusCode = 400;
+    statusCode = 404;
   }
 
   //   mongoose validation error
