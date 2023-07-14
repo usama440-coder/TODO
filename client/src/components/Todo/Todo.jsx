@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Todo.css";
-import { PiDotsSixVerticalBold } from "react-icons/pi";
+import { FaTrash } from "react-icons/fa6";
 import taskService from "../../services/taskService";
 import { toast } from "react-hot-toast";
 
@@ -40,7 +40,7 @@ const Todo = ({ todo, setTasks }) => {
         <span className="checkmark"></span>
       </label>
       <p>{todo?.description}</p>
-      <PiDotsSixVerticalBold className="icon" onClick={handleDelete} />
+      <FaTrash className="icon" onClick={handleDelete} />
     </div>
   );
 };

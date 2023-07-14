@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const Task = require("../models/Task.model");
+const todoService = require("../services/todoService");
 
 // @desc    Add a task
 // @route   POST /api/v1/task
@@ -18,9 +18,7 @@ const addTask = asyncHandler(async (req, res) => {
     throw new Error("Length should be atleast 5 characters");
   }
 
-  const task = await Task.create({
-    description,
-  });
+  const task = await todoService.createTask({ description });
 
   res.status(201).json({ success: true, task });
 });
@@ -28,7 +26,7 @@ const addTask = asyncHandler(async (req, res) => {
 // @desc    Get all tasks
 // @route   GET /api/v1/task
 const getTasks = asyncHandler(async (req, res) => {
-  const tasks = await Task.find({});
+  const tasks = await todoService.getTasks();
   res.status(200).json({ success: true, tasks });
 });
 
@@ -37,7 +35,7 @@ const getTasks = asyncHandler(async (req, res) => {
 const getTask = asyncHandler(async (req, res) => {
   const _id = req.params.id;
 
-  const task = await Task.findOne({ _id });
+  const task = await todoService.getTask(_id);
 
   // task not exists
   if (!task) {
@@ -55,7 +53,7 @@ const updateTask = asyncHandler(async (req, res) => {
   const { description, completed, completedTime } = req.body;
 
   // task exists
-  const taskExists = await Task.findOne({ _id });
+  const taskExists = await todoService.getTask(_id);
   if (!taskExists) {
     res.status(404);
     throw new Error("Task does not exist");
@@ -67,7 +65,7 @@ const updateTask = asyncHandler(async (req, res) => {
     throw new Error("Length should be atleast 5 characters");
   }
 
-  await Task.updateOne({ _id }, { description, completed, completedTime });
+  await todoService.updateTask(_id, { description, completed, completedTime });
 
   res.status(200).json({ success: true, message: "Task updated successfully" });
 });
@@ -78,13 +76,13 @@ const deleteTask = asyncHandler(async (req, res) => {
   const _id = req.params.id;
 
   // task exists
-  const taskExists = await Task.findOne({ _id });
+  const taskExists = await todoService.getTask(_id);
   if (!taskExists) {
     res.status(400);
     throw new Error("Task does not exist");
   }
 
-  await Task.deleteOne({ _id });
+  await todoService.deleteTask({ _id });
 
   res.status(200).json({ success: true, message: "Task deleted successfully" });
 });

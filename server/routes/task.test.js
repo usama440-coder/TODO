@@ -49,8 +49,13 @@ describe("Test POST /task", () => {
 // delete task
 describe("Test DELETE /task/:id", () => {
   test("Should respond with 200", async () => {
+    // create a task
+    const created = await request(app)
+      .post("/api/v1/task")
+      .send({ description: "test case task" });
+
     const response = await request(app).delete(
-      "/api/v1/task/64a5c70bbe0e849ea016ab5b"
+      `/api/v1/task/${created.body.task._id}`
     );
 
     expect(response.statusCode).toBe(200);
@@ -60,8 +65,13 @@ describe("Test DELETE /task/:id", () => {
 // update task
 describe("Test PUT /task/:id", () => {
   test("Should respond with 200", async () => {
+    // create a task
+    const created = await request(app)
+      .post("/api/v1/task")
+      .send({ description: "test case task" });
+
     const response = await request(app)
-      .put("/api/v1/task/64a1f325690ff3789c8f1700")
+      .put(`/api/v1/task/${created.body.task._id}`)
       .send({ description: "task changed" });
 
     expect(response.statusCode).toBe(200);

@@ -13,7 +13,8 @@
   .homeHeader {
     width: 300px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 1rem;
     align-items: center;
     padding: 0.8rem;
     background-color: #ebc8aa7f;
@@ -24,6 +25,7 @@
   
   .homeHeader p {
     color: #ffffff;
+
   }
   
   .icon {

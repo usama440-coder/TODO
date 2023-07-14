@@ -1,6 +1,6 @@
 import "./home.css";
 import { useState, useEffect } from "react";
-import { FaBars, FaAngleDown } from "react-icons/fa6";
+import { FaBars } from "react-icons/fa6";
 import Todo from "../../components/Todo/Todo";
 import taskService from "../../services/taskService";
 import AddTodoModal from "../../components/AddTodoModal/AddTodoModal";
@@ -30,7 +30,6 @@ const Home = () => {
       <div className="homeHeader">
         <FaBars className="icon" onClick={() => setAddTaskModal(true)} />
         <p>Your todos</p>
-        <FaAngleDown className="icon" />
       </div>
 
       {/* add todo modal */}
