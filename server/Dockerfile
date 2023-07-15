@@ -1,0 +1,37 @@
+# node.js runtime for base image
+FROM node:14-alpine
+
+
+# working directory
+WORKDIR /app
+
+# copy package.json and package-lock.json
+COPY package*.json ./
+
+# install dependencies
+RUN npm install
+
+# copy all the server code
+COPY . .
+
+# container port
+EXPOSE 5000
+
+# startup command
+CMD ["npm", "start"]
+
+
+# FROM node:14-slim
+
+# WORKDIR /app
+
+# COPY ./package.json ./
+# COPY ./package-lock.json ./
+
+# RUN npm install
+
+# COPY . .
+
+# EXPOSE 5000
+
+# CMD [ "app.js" ]
